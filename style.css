@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Outfit", sans-serif;
+    box-sizing: border-box;
+  }
+  body{
+    background-image: url('https://www.metgraphics.net/wp-content/uploads/2018/09/background-39494.jpg');
+    background-repeat: no-repeat;
+    background-size: cover ;
+    background-color: rgb(0, 0, 0);
+    
+  }
+  
+  @media (
+  max-width:992px
+  )
+  {
+      body{
+        background-image: url('https://www.metgraphics.net/wp-content/uploads/2018/09/background-39494.jpg');
+        
+        background-size: cover;
+      }
+  }
+  .card{
+    width: 90%;
+    max-width: 470px;
+    /* background-color: rgba(3, 63, 78, 0.482); */
+    color: rgb(0, 0, 0);
+    margin: 100px auto;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+  }
+  .search{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* color: lighty; */
+    
+  }
+  .search input{
+    border: 0;
+    outline: 0;
+    background: #1a1a1be4;
+    color: #f1eeeed9;
+    padding: 10px 25px;
+    height: 60px;
+    border-radius: 30px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 18px;
+    width: 50px;
+  
+  }
+  .search button{
+    border: 0;
+    outline: 0;
+    background: rgba(3, 63, 78, 0);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    color: color rgb(40, 42, 44);
+    
+  }
+  .weather-icon{
+    width: 170px;
+    margin-top: 30px;
+  
+  }
+  .weather h1{
+    font-size: 80px;
+    font-weight: 500;
+  }
+  .weather h2{
+    font-size: 45px;
+    font-weight: 400;
+    margin-top: -10px;
+  }
+  .details{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    font-size: 15px;
+    margin-top:  50px;
+  }
+  .col{
+    display: flex;
+    align-items: center;
+    text-align: left;
+  
+  
+  }
+  .col img{
+    width: 30px;
+    margin: 10px;
+    
+    
+  
+  }
+  .humidity, .wind, .pressure{
+    font-size: 25px;
+    margin-top: -6px;
+  }
+  #feels{
+    font-size: 28px;
+  }
+  #det{
+    color: white;
+    font-size: 30px;
+  }
+  .main{
+    font-size: 25px;
+  }
+  .weather{
+    display: none;
+  }
+  .error{
+    text-align: left;
+    margin-left: 10px;
+    font-size: 14px;
+    margin-top: 10px;
+    display: none;
+  }
+  #result{
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: large;
+    color: #f1eeeed9;
+  }

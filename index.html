@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+   <div class="col-md-10">
+        <div class="card" style="background-color: rgba(3, 63, 78, 0.482) ;">
+            <p id="result"></p>
+            <div class="search">
+                <input type="text" placeholder="Enter city name" spellcheck="false">
+                <button><i class="fa-solid fa-magnifying-glass fa-2xl"></i></button>
+            </div>
+            <div class="error">
+                <p>Invalid city name</p>
+            </div>
+            <div class="weather"><img src="./images/rain.png" class="weather-icon">
+                <p class="main">clouds</p>
+                <h1 class="temp">22°C <span id="feels">mist</span></h1>
+                <h2 class="city">Tokyo</h2>
+                <h3 class="country">JPN</h3>
+
+                <div class="details">
+                   
+                       <div class="col-md-4">
+                        
+                        <div>
+                            <img src="./images/humidity.png" alt="">
+                            <p class="humidity"><span id="det">50</span>%</p>
+                            <h4>humidity</h4>
+                        </div>
+                       </div>
+                       <div class="col-md-4">
+                        <img src="./images/wind.png" alt="">
+                        
+                            <p class="wind"><span id="det">50</span>km/h</p>
+                            <h4>wind speed</h4>
+                        
+                       </div>
+                       <div class="col-md-4">
+                        
+                        <img src="" alt="">
+                        <p class="pressure"><span id="det">50</span>Pa</p>
+                        <h4>pressure</h4>
+                    
+                   </div>
+                      
+                    
+                </div>
+                
+            </div>
+        </div>
+   </div>
+   <script>
+
+
+    const apiKey = "5fe36b192ffd1c36dffb6752bc1722b2"
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+
+    const searchBox=document.querySelector(".search input")
+    const searchBtn=document.querySelector(".search button")
+    const weatherIcon=document.querySelector(".weather-icon")
+    const bg=document.querySelector(".card")
+
+
+
+    async function checkWeather(city) {
+        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+        
+
+        if(response.status==404){
+            document.querySelector(".error").style.display="block";
+            document.querySelector(".weather").style.display="none";
+        }
+        else{
+            var data = await response.json()
+        
+
+        document.querySelector(".city").innerHTML=data.name;
+        document.querySelector(".main").innerHTML=data.weather[0].main;
+        document.querySelector(".temp").innerHTML=Math.round(data.main.temp )+ "°C";
+        document.querySelector(".country").innerHTML=data.sys.country;
+        document.querySelector(".humidity").innerHTML=data.main.humidity + "%";
+        document.querySelector(".wind").innerHTML=data.wind.speed + "km/h";
+        document.querySelector(".pressure").innerHTML=data.main.pressure + "Pa";
+        document.querySelectorAll("#feels").innerHTML=data.main.feels_like;
+
+
+        if(data.weather[0].main =="Clouds"){
+            weatherIcon.src="images/clouds.png"
+            bg.style="background-image:url('https://th.bing.com/th/id/R.bbed5bbef788c54d594489c9e0335b3d?rik=1cN9TUABuAzSEQ&riu=http%3a%2f%2fwww.pixelstalk.net%2fwp-content%2fuploads%2f2016%2f10%2fCloud-Wallpapers-HD-Free-Download.jpg&ehk=zgJ0INBTQnhCfCHYXqQFGEoF%2fCClQTLqmeu408vI8cw%3d&risl=&pid=ImgRaw&r=0')"
+        }
+        else if(data.weather[0].main =="Clear"){
+            weatherIcon.src="images/clear.png"
+            bg.style="background-image:url('https://static.vecteezy.com/system/resources/previews/004/770/348/non_2x/sunset-and-orange-cloud-and-blue-dawn-sky-with-cloud-horizontal-lines-motion-effect-on-background-from-sunshine-free-photo.jpg')"
+        }
+        else if(data.weather[0].main =="Rain"){
+            weatherIcon.src="images/rain.png"
+            bg.style="background-image:url('https://i.pinimg.com/736x/6a/b0/c2/6ab0c22df2b3f53a9cf923853c9752a1.jpg')"
+            
+        }
+        else if(data.weather[0].main =="Drizzle"){
+            weatherIcon.src="images/drizzle.png"
+            bg.style="background-image:url('https://i.pinimg.com/564x/8b/f2/92/8bf2928488536cf69979c73695da177d.jpg')"
+        }
+        else if(data.weather[0].main =="Mist"){
+            weatherIcon.src="images/mist.png"
+            bg.style="background-image:url('https://i.pinimg.com/564x/ad/b6/50/adb650e85206ae6a1e561b1a5d88c25e.jpg')"
+
+        }
+        else if(data.weather[0].main =="Haze"){
+            weatherIcon.src="images/mist.png"
+            bg.style="background-image:url('https://pixabay.com/photos/street-road-haze-sundown-sunset-6999284/')"
+
+        }
+        else if(data.weather[0].main =="Thunderstorm"){
+            weatherIcon.src="images/rain.png"
+            bg.style="background-image:url('https://i.pinimg.com/736x/e9/71/0f/e9710f6ab124408bf09d4a76c87deb30.jpg')"
+        }
+        else{
+            weatherIcon.src="images/clouds.png"
+            bg.style="background-image:url('https://i.pinimg.com/564x/9b/02/9c/9b029c45d7545784fd05ac4454c4d197.jpg')"
+
+        }
+        document.querySelector(".weather").style.display="block"
+        document.querySelector(".error").style.display="none";
+        
+
+        }
+        
+        
+        
+
+        
+
+    }
+
+
+searchBtn.addEventListener("click",()=>{
+    checkWeather(searchBox.value);
+
+})
+
+
+
+
+
+
+
+   </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+   </script>
+    
+</body>
+</html>
